@@ -42,7 +42,7 @@
                 repo: '{{ .Site.Params.comment.gitalk.repo }}',
                 owner: '{{ .Site.Params.comment.gitalk.owner }}',
                 admin: ['{{ .Site.Params.comment.gitalk.owner }}'],
-                id: md5(location.hash),      // Ensure uniqueness and length less than 50
+                id: '{{ .Permalink | md5 }}_{{ .Date.Format "2006-01-02" }}',      // Ensure uniqueness and length less than 50
                 distractionFreeMode: false,  // Facebook-like distraction free mode
               })
               gitalk.render('gitalk-container')
