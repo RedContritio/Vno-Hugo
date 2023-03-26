@@ -33,18 +33,12 @@
       </script>
     {{end}}
 
-    {{ $gitalk_comment_secret := "" }}
-    {{ if gt (len .Site.Params.comment.gitalk.secret) 0 }}
-        {{ $gitalk_comment_secret := .Site.Params.comment.gitalk.secret }}
-    {{ else }}
-        {{ $gitalk_comment_secret := os.Getenv "GITALK_CLIENT_SECRET" }}
-    {{ end }}
     {{ if .Site.Params.comment.gitalk.ID }}
     <div id="gitalk-container">
         <script>
             var gitalk = new Gitalk({
                 clientID: '{{ .Site.Params.comment.gitalk.ID }}',
-                clientSecret: '{{ $gitalk_comment_secret }}',
+                clientSecret: '{{ .Site.Params.comment.gitalk.secret }}',
                 repo: '{{ .Site.Params.comment.gitalk.repo }}',
                 owner: '{{ .Site.Params.comment.gitalk.owner }}',
                 admin: ['{{ .Site.Params.comment.gitalk.owner }}'],
