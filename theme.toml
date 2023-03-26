@@ -2,19 +2,19 @@ name = "Vno"
 license = "CC BY-NC-SA 4.0"
 licenselink = "https://creativecommons.org/licenses/by-nc-sa/4.0/"
 description = "A Simple and Responsive blog theme for Hugo."
-homepage = "https://github.com/xslingcn/vno-hugo"
-demosite = "https://vno-hugo.netlify.app/"
+homepage = "https://github.com/RedContritio/vno-hugo"
+# demosite = "https://vno-hugo.netlify.app/"
 tags = ["blog", "responsive","dark", "light"]
 features = ["blog", "responsive", "darkmode", "pagination", "social-menu"]
 min_version = "0.54.0"
 
 # If the theme has a single author
 [author]
-    name = "xsling"
-    homepage = "https://github.com/xslingcn"
+    name = "RedContritio"
+    homepage = "https://github.com/RedContritio"
 
 # If porting an existing theme
 [original]
-    author = "onevcat"
-    homepage = "https://onevcat.com/"
-    repo = "https://github.com/onevcat/vno-jekyll"
+    author = "xsling"
+    homepage = "https://github.com/xslingcn"
+    repo = "https://github.com/xslingcn/vno-hugo"
