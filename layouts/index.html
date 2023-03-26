@@ -1,7 +1,9 @@
 {{ define "main" }}
+{{ $paginator := where .Site.RegularPages "Params.hidden" "!=" "true" | .Paginate }}
+
 <div class="main-post-list hidden">
     <ol class="post-list">
-        {{ range .Paginator.Pages }}
+        {{ range $paginator.Pages }}
         <li>
             <h2 class="post-list__post-title post-title"><a href="{{ .RelPermalink }}" title="To {{ .RelPermalink }}">{{ .Title }}</a></h2>
             <p class="excerpt">{{ .Summary | truncate 250 }}&hellip;</p>
