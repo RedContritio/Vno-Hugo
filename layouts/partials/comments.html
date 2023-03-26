@@ -34,7 +34,7 @@
     {{end}}
 
     {{ $gitalk_comment_secret := "" }}
-    {{ if .Site.Params.comment.gitalk.secret }}
+    {{ if gt (len .Site.Params.comment.gitalk.secret) 0 }}
         {{ $gitalk_comment_secret := .Site.Params.comment.gitalk.secret }}
     {{ else }}
         {{ $gitalk_comment_secret := os.Getenv "GITALK_CLIENT_SECRET" }}
