@@ -8,6 +8,9 @@
         <h1 class="post-title">{{ .Title }}</h1>
     </header>
     <section class="post">
+        {{ if .Params.toc }}
+        {{ .TableOfContents }}
+        {{ end }}
         {{ .Content }}
     </section>
 </article>
