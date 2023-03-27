@@ -1,0 +1,13 @@
+{{ define "main" }}
+<article class="post-container post-container--single" itemscope itemtype="http://schema.org/BlogPosting">
+    <header class="post-header">
+        <h1 class="post-title">{{ .Title }}</h1>
+    </header>
+    <section class="post">
+        {{ .Content }}
+    </section>
+</article>
+{{ if ne .Params.comment false }}
+    {{ partial "comments.html" . }}
+{{ end }}
+{{ end }}

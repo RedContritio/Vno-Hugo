@@ -11,6 +11,10 @@
         {{ .Content }}
     </section>
 </article>
-{{ partial "read-more.html" . }} 
-{{ partial "comments.html" . }}
+{{ if ne .Params.readMore false }}
+  {{ partial "read-more.html" . }}
+{{ end }}
+{{ if ne .Params.comment false }}
+    {{ partial "comments.html" . }}
+{{ end }}
 {{ end }}
