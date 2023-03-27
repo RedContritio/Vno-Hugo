@@ -1,52 +1,82 @@
+{{ $next := false }}
+{{ $prev := false }}
+{{ $current := . }}
+{{ $found := false }}
+
+{{ range $index, $page := where .Site.RegularPages "Params.hidden" "!=" "true" }}
+    {{ if eq $page.Permalink $current.Permalink }}
+        {{ $found = true }}
+        {{ continue }}
+    {{ end }}
+    {{ if not $found }}
+        {{ $next = $page }}
+    {{ else if not $prev }}
+        {{ $prev = $page }}
+        {{ break }}
+    {{ end }}
+{{ end }}
+
 <section class="read-more">
     <div class="read-more-header">
-        {{ if .Next }}
+        {{ if $next }}
         <div class="read-more-header-item read-more-item">
             <span class="read-more-item-dim">{{ T "recent" }}</span>
-            <h2 class="post-list__post-title post-title"><a href="{{ .Next.RelPermalink }}" title="link to {{ .Next.Title }}">{{ .Next.Title }}</a></h2>
+            <h2 class="post-list__post-title post-title"><a href="{{ $next.RelPermalink }}" title="link to {{ $next.Title }}">{{ $next.Title }}</a></h2>
         </div>
+        {{ else }}
+        <div class="read-more-header-item read-more-item"></div>
         {{ end }}
-        {{ if .Prev }}
+        {{ if $prev }}
         <div class="read-more-header-item read-more-item">
             <span class="read-more-item-dim">{{ T "earlier" }}</span>
-            <h2 class="post-list__post-title post-title"><a href="{{ .Prev.RelPermalink }}" title="link to {{ .Prev.Title }}">{{ .Prev.Title }}</a></h2>
+            <h2 class="post-list__post-title post-title"><a href="{{ $prev.RelPermalink }}" title="link to {{ $prev.Title }}">{{ $prev.Title }}</a></h2>
         </div>
+        {{ else }}
+        <div class="read-more-header-item read-more-item"></div>
         {{ end }}
     </div>
     <div class="read-more-summary">
-        {{ if .Next }}
+        {{ if $next }}
         <div class="read-more-summary-item read-more-item">
-            <p class="excerpt">{{ .Next.Summary | truncate 250}}&hellip;</p>
+            <p class="excerpt">{{ $next.Summary | truncate 250}}&hellip;</p>
         </div>
+        {{ else }}
+        <div class="read-more-summary-item read-more-item"></div>
         {{ end }}
-        {{ if .Prev }}
+        {{ if $prev }}
         <div class="read-more-summary-item read-more-item">
-            <p class="excerpt">{{ .Prev.Summary | truncate 250}}&hellip;</p>
+            <p class="excerpt">{{ $prev.Summary | truncate 250}}&hellip;</p>
         </div>
+        {{ else }}
+        <div class="read-more-summary-item read-more-item"></div>
         {{ end }}
     </div>
     <div class="read-more-meta">
-        {{ if .Next }}
+        {{ if $next }}
         <div class="read-more-meta-item read-more-item">
-            <time datetime="{{ .Date.Format "2006-01-02 15:04:05 -0700" }}" class="post-list__meta--date date">{{ .Next.Date.Format "2006-01-02" }}</time>
-            {{ with .Next.Params.tags }} 
+            <time datetime="{{ .Date.Format "2006-01-02 15:04:05 -0700" }}" class="post-list__meta--date date">{{ $next.Date.Format "2006-01-02" }}</time>
+            {{ with $next.Params.tags }} 
             <span class="post-list__meta--tags tags"> 
                 {{ range . }}  • <a href="{{ "tags" | absURL }}/{{ . | urlize }}">{{ . }}</a> {{ end }} 
             </span>
             {{ end }}
-            <a class="btn-border-small" href="{{ .Next.RelPermalink }}">{{ T "continue" }}</a>
+            <a class="btn-border-small" href="{{ $next.RelPermalink }}">{{ T "continue" }}</a>
         </div>
+        {{ else}}
+        <div class="read-more-meta-item read-more-item"></div>
         {{ end }}
-        {{ if .Prev }}
+        {{ if $prev }}
         <div class="read-more-meta-item read-more-item">
-            <time datetime="{{ .Date.Format "2006-01-02 15:04:05 -0700" }}" class="post-list__meta--date date">{{ .Prev.Date.Format "2006-01-02" }}</time>
-            {{ with .Prev.Params.tags }} 
+            <time datetime="{{ .Date.Format "2006-01-02 15:04:05 -0700" }}" class="post-list__meta--date date">{{ $prev.Date.Format "2006-01-02" }}</time>
+            {{ with $prev.Params.tags }} 
             <span class="post-list__meta--tags tags"> 
                 {{ range . }}  • <a href="{{ "tags" | absURL }}/{{ . | urlize }}">{{ . }}</a> {{ end }} 
             </span>
             {{ end }}
-            <a class="btn-border-small" href="{{ .Prev.RelPermalink }}">{{ T "continue" }}</a>
+            <a class="btn-border-small" href="{{ $prev.RelPermalink }}">{{ T "continue" }}</a>
         </div>
+        {{ else}}
+        <div class="read-more-meta-item read-more-item"></div>
         {{ end }}
     </div>
  </section>
