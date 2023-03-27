@@ -38,6 +38,12 @@
       }
     }
 
+    .read-more-meta {
+      a.btn-border-small {
+        display: inline-block;
+      }
+    }
+
     .read-more-item-dim {
       color: $hover-color;
       font-size: .8em;
